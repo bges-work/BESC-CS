@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS Department — PYQs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #FF6B00;
+      --orange-soft: #FF8C38;
+      --orange-glow: rgba(255, 107, 0, 0.18);
+      --orange-dim: rgba(255, 107, 0, 0.08);
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #161616;
+      --text: #E8E8E8;
+      --muted: #666;
+      --border: rgba(255, 107, 0, 0.3);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Sora', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px 60px;
+      overflow-x: hidden;
+    }
+
+    /* ── Noise texture overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* ── Ambient glow ── */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(255,107,0,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Header ── */
+    .header {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin-bottom: 60px;
+      animation: fadeDown 0.8s ease forwards;
+    }
+
+    .college-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      border: 1px solid var(--border);
+      background: var(--bg-dim, rgba(255,107,0,0.04));
+      padding: 14px 28px;
+      margin-bottom: 28px;
+      position: relative;
+      backdrop-filter: blur(4px);
+    }
+
+    .college-badge::before,
+    .college-badge::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--orange);
+    }
+    .college-badge::before { top: -3px; left: -3px; }
+    .college-badge::after { bottom: -3px; right: -3px; }
+
+    .college-badge img {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 2px;
+    }
+
+    .college-badge span {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--orange);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+
+    .header h1 {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(22px, 4vw, 36px);
+      color: white;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+
+    .header h1 span {
+      color: var(--orange);
+    }
+
+    .header p {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-family: 'Space Mono', monospace;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--orange);
+      margin: 20px auto;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 560px;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 480px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .sem-card {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 28px 16px;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      color: var(--orange);
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.2s;
+      animation: fadeUp 0.6s ease forwards;
+      opacity: 0;
+    }
+
+    .sem-card:nth-child(1) { animation-delay: 0.1s; }
+    .sem-card:nth-child(2) { animation-delay: 0.15s; }
+    .sem-card:nth-child(3) { animation-delay: 0.2s; }
+    .sem-card:nth-child(4) { animation-delay: 0.25s; }
+    .sem-card:nth-child(5) { animation-delay: 0.3s; }
+    .sem-card:nth-child(6) { animation-delay: 0.35s; }
+
+    .sem-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--orange-glow);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .sem-card:hover::before { opacity: 1; }
+    .sem-card:hover { border-color: var(--orange); transform: translateY(-3px); }
+
+    .sem-card .num {
+      font-family: 'Space Mono', monospace;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--orange);
+      line-height: 1;
+    }
+
+    .sem-card .label {
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+    }
+
+    .sem-card .arrow {
+      font-size: 11px;
+      color: var(--orange);
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: opacity 0.25s, transform 0.25s;
+    }
+
+    .sem-card:hover .arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      position: relative;
+      z-index: 1;
+      margin-top: 60px;
+      text-align: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 2px;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="college-badge">
+      <img src="download.jpg" alt="College Logo" onerror="this.style.display='none'">
+      <span>The Bhawanipur Education<br>Society College</span>
+    </div>
+    <h1>Department of <span>Computer Science</span></h1>
+    <div class="divider"></div>
+    <p>Previous Year Question Papers</p>
+  </div>
+
+  <div class="grid">
+    <a href="SEM1.html" class="sem-card">
+      <span class="num">I</span>
+      <span class="label">Semester</span>
+      <span class="arrow">→</span>
+    </a>
+    <a href="SEM2.html" class="sem-card">
+      <span class="num">II</span>
+      <span class="label">Semester</span>
+      <span class="arrow">→</span>
+    </a>
+    <a href="SEM3.html" class="sem-card">
+      <span class="num">III</span>
+      <span class="label">Semester</span>
+      <span class="arrow">→</span>
+    </a>
+    <a href="SEM4.html" class="sem-card">
+      <span class="num">IV</span>
+      <span class="label">Semester</span>
+      <span class="arrow">→</span>
+    </a>
+    <a href="SEM5.html" class="sem-card">
+      <span class="num">V</span>
+      <span class="label">Semester</span>
+      <span class="arrow">→</span>
+    </a>
+    <a href="SEM6.html" class="sem-card">
+      <span class="num">VI</span>
+      <span class="label">Semester</span>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
+  <div class="footer">
+    &copy; 2026 &nbsp;·&nbsp; BESC CS DEPT 
+  </div>
+
+</body>
+</html>

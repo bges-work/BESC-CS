@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sem I — PYQs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #FF6B00;
+      --orange-soft: #FF8C38;
+      --orange-glow: rgba(255, 107, 0, 0.14);
+      --orange-dim: rgba(255, 107, 0, 0.06);
+      --bg: #0A0A0A;
+      --bg2: #111111;
+      --bg3: #161616;
+      --bg4: #1A1A1A;
+      --text: #E8E8E8;
+      --muted: #555;
+      --muted2: #888;
+      --border: rgba(255, 107, 0, 0.25);
+      --border-strong: rgba(255, 107, 0, 0.55);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Sora', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 36px 24px 70px;
+      overflow-x: hidden;
+    }
+
+    /* ── Noise ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── Top ambient ── */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -150px;
+      right: -100px;
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(255,107,0,0.06) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* ── Breadcrumb ── */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--muted2);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    .breadcrumb a {
+      color: var(--muted2);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .breadcrumb a:hover { color: var(--orange); }
+    .breadcrumb .sep { color: var(--muted); }
+    .breadcrumb .current { color: var(--orange); }
+
+    /* ── Page header ── */
+    .page-header {
+      margin-bottom: 40px;
+      animation: fadeDown 0.6s ease forwards;
+    }
+
+    .page-header .tag {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--orange);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      margin-bottom: 14px;
+    }
+
+    .page-header h1 {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(22px, 4vw, 36px);
+      font-weight: 700;
+      color: white;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+    }
+
+    .page-header h1 em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    /* ── Year block ── */
+    .year-block {
+      margin-bottom: 36px;
+      animation: fadeUp 0.6s ease forwards;
+      opacity: 0;
+    }
+
+    .year-block:nth-child(1) { animation-delay: 0.1s; }
+    .year-block:nth-child(2) { animation-delay: 0.2s; }
+
+    .year-heading {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .year-heading .year-num {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--orange);
+      letter-spacing: 3px;
+    }
+
+    .year-heading .line {
+     position: relative;
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── Section label ── */
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--muted2);
+      margin-bottom: 8px;
+      padding-left: 2px;
+    }
+
+    /* ── Table card ── */
+    .table-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      margin-bottom: 12px;
+      overflow: hidden;
+      position: relative;
+      transition: border-color 0.3s;
+    }
+
+    .table-card:hover { border-color: var(--border-strong); }
+
+    /* thin orange left accent */
+    .table-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--orange);
+    }
+
+    /* ── The table itself ── */
+    .marks-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    /* Top header row */
+    .marks-table thead tr.top-header th {
+      background: var(--bg4);
+      color: var(--orange);
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 12px 16px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .marks-table thead tr.top-header th:last-child {
+      border-right: none;
+    }
+
+    /* Sub-header row */
+    .marks-table thead tr.sub-header th {
+      background: var(--bg3);
+      font-size: 12px;
+      font-weight: 600;
+      color: #bbb;
+      padding: 10px 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .marks-table thead tr.sub-header th:last-child {
+      border-right: none;
+    }
+
+    /* Body rows */
+    .marks-table tbody tr {
+      background: var(--bg2);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: background 0.2s;
+    }
+
+    .marks-table tbody tr:hover {
+      background: var(--orange-dim);
+    }
+
+    .marks-table tbody th,
+    .marks-table tbody td {
+      padding: 11px 14px;
+      text-align: center;
+      color: var(--muted2);
+      border-right: 1px solid rgba(255,255,255,0.04);
+      font-size: 13px;
+    }
+
+    .marks-table tbody th:last-child,
+    .marks-table tbody td:last-child {
+      border-right: none;
+    }
+
+    /* ── Links inside table ── */
+    a.paper-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--orange-soft);
+      text-decoration: none;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 5px 10px;
+      border: 1px solid rgba(255,107,0,0.3);
+      border-radius: 2px;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+
+    a.paper-link:hover {
+      background: var(--orange);
+      color: #000;
+      border-color: var(--orange);
+    }
+
+    a.paper-link::after {
+      content: '↗';
+      font-size: 10px;
+    }
+
+    /* dash cells */
+    .dash { color: var(--muted); font-family: 'Space Mono', monospace; }
+
+    /* ── Back link ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 40px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted2);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .back-link:hover {
+      color: var(--orange);
+      border-bottom-color: var(--orange);
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span class="sep">/</span>
+    <span class="current">Semester I</span>
+  </div>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="tag">CS Department · previous year question papers</div>
+    <h1>Semester <em>I</em><br>Question Papers</h1>
+  </div>
+
+  <!-- ══ 2025 ══ -->
+  <div class="year-block">
+    <div class="year-heading">
+      <span class="year-num">2025</span>
+      <div class="line"></div>
+    </div>
+
+    <div class="section-label">Theory & Practical — Major</div>
+    <div class="table-card">
+      <table class="marks-table">
+        <thead>
+          <tr class="top-header">
+            <th colspan="2">Theory (Major)</th>
+            <th colspan="2">Practical (Major)</th>
+          </tr>
+          </thead>
+          <tr class="sub-header">
+            <th><a class="paper-link" href="#">DSCC1</a></th>
+            <th><a class="paper-link" href="#">SEC1</a></th>
+            <th><a class="paper-link" href="https://drive.google.com/file/d/1Wrc4WAAUd7HjmDMbX9_3LG9ZLAIs2llU/view?usp=drive_link">DSCC1</a></th>
+            <th><a class="paper-link" href="https://drive.google.com/file/d/1J6Sl5uHdBJxx9LVQZEFRpxqYVPuCAZvn/view?usp=drive_link">SEC1</a></th>
+          </tr>
+         
+        </thead>
+          
+        
+      </table>
+    </div>
+
+    <div class="section-label" style="margin-top:16px;">Theory & Practical — Minor + IDC</div>
+    <div class="table-card">
+      <table class="marks-table">
+        <thead>
+          <tr class="top-header">
+            <th colspan="2">Theory (Minor + IDC)</th>
+            <th colspan="2">Practical (Minor + IDC)</th>
+          </tr>
+          </thead>
+        <tr class="sub-header">
+            <th colspan="2"><a class="paper-link" href="https://drive.google.com/file/d/1StdMIZJchMoKmCnWYnfrYJuPbeDUEJ9h/view?usp=drive_link">MN-1</a></th>
+            <th colspan="2"><a class="paper-link" href="#">MN-1</a></th>
+                       
+          </tr>
+        
+      </table>
+    </div>
+  </div>
+
+ 
+  <!-- ══ 2023 ══ -->
+  <div class="year-block">
+    <div class="year-heading">
+      <span class="year-num">2023</span>
+      <div class="line"></div>
+    </div>
+
+    <div class="section-label">Theory & Practical — Major</div>
+    <div class="table-card">
+      <table class="marks-table">
+        <thead>
+          <tr class="top-header">
+            <th colspan="2">Theory (Major)</th>
+            <th colspan="2">Practical (Major)</th>
+          </tr>
+          <tr class="sub-header">
+            <th><a class="paper-link" href="https://drive.google.com/file/d/16zD8h10WgOtJP5hbLWLZDCmjzZfNB3X-/view?usp=drive_link">DSCC1</a></th>
+            <th><a class="paper-link" href="https://drive.google.com/file/d/16skTRUPj7AsVHChe6yJhlK1YBXlynisf/view?usp=drive_link">DSCC2</a></th>
+            <th><a class="paper-link" href="https://drive.google.com/file/d/1dlUIFfFDSDvUQPy6GQyso9Wse46km2w3/view?usp=drive_link">DSCC1</a></th>
+            <th><a class="paper-link" href="https://drive.google.com/file/d/1ivpF8ZKNPi5xFhLoR70_1sJtfW1wQIyM/view?usp=drive_link">DSCC2</a></th>
+          
+          </tr>
+           <tr class="sub-header">
+            <th><a class="paper-link" href="https://drive.google.com/file/d/1fN5utfH4ENYS5ScQN8j-fy82pIvae4Ky/view?usp=drive_link">MDC-CC1</a></th>
+            <th><a class="paper-link" href="https://drive.google.com/file/d/1Ja49feD1LBdga8T8G9xCpiURx0AaQeKv/view?usp=drive_link">NEP-CC1</a></th>
+            <th><a class="paper-link" href="#">MDC-CC1</a></th>
+            <th><a class="paper-link" href="#">NEP-CC1</a></th>
+          </tr>
+          <tr class="sub-header">
+            <th COLSPAN="2"><a class="paper-link" href="https://drive.google.com/file/d/1KMRmzQ5tRgkI61K-OIralvsqvbzQLbzT/view?usp=drive_link">SEC1</a></th>
+            <th COLSPAN="2"><a class="paper-link" href="https://drive.google.com/file/d/1XZxm2uh97_Xc5bshIw08tbFeq3570v_T/view?usp=drive_link">SEC1</a></th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+
+    <div class="section-label" style="margin-top:16px;">Theory & Practical — Minor + IDC</div>
+    <div class="table-card">
+      <table class="marks-table">
+        <thead>
+          <tr class="top-header">
+            <th colspan="2">Theory (Minor + IDC)</th>
+            <th colspan="2">Practical (Minor + IDC)</th>
+          </tr>
+          <tr class="sub-header">
+            <th><a class="paper-link" href="https://drive.google.com/file/d/1YM5jQXI2TmWiW9B_sH00WNcqszTVktHw/view?usp=drive_link">MN1</a></th>
+            <th><a class="paper-link" href="https://drive.google.com/file/d/16kYshdMVh5BM7rN-Rj3fuZJsWv4He0ZO/view?usp=drive_link">GE1</a></th>
+            <th><a class="paper-link" href="#">MN-1</a></th>
+            <th><a class="paper-link" href="#">GE1</a></th>
+          </tr>
+        </thead>
+        
+      </table>
+    </div>
+  </div>
+  <!-- ══ 2022 ══ -->
+  <div class="year-block">
+    <div class="year-heading">
+      <span class="year-num">2022</span>
+      <div class="line"></div>
+    </div>
+
+    <div class="section-label">Theory & Practical — Major</div>
+    <div class="table-card">
+      <table class="marks-table">
+        <thead>
+          <tr class="top-header">
+            <th colspan="2">Theory (Major)</th>
+            <th colspan="2">Practical (Major)</th>
+          </tr>
+          </thead>
+          <tr class="sub-header">
+            <th><a class="paper-link" href="https://drive.google.com/file/d/1JmASZj5nVM5A6RBQJ02V38em8FExVSam/view?usp=drive_link">CC1(CBCS)</a></th>
+            <th><a class="paper-link" href="https://drive.google.com/file/d/1KlMEk4K0qs0IUzJBymesasKMQ72WEQ3N/view?usp=drive_link">CC2(CBCS)</a></th>
+            <th><a class="paper-link" href="#">CC-1</a></th>
+            <th><a class="paper-link" href="#">CC-2</a></th>
+          </tr>
+         
+        </thead>
+          
+        
+      </table>
+    </div>
+
+    <div class="section-label" style="margin-top:16px;">Theory & Practical — Minor + IDC</div>
+    <div class="table-card">
+      <table class="marks-table">
+        <thead>
+          <tr class="top-header">
+            <th colspan="2">Theory (Minor + IDC)</th>
+            <th colspan="2">Practical (Minor + IDC)</th>
+          </tr>
+          </thead>
+        <tr class="sub-header">
+            <th colspan="2"><a class="paper-link" href="https://drive.google.com/file/d/1D0_61c3aYGFy7ANcs-4ByVEW-gC3ADWj/view?usp=drive_link">GE1(CMSG)</a></th>
+            <th COLSPAN="2"><a class="paper-link" href="">GE-1</a></th>
+          </tr>
+        
+      </table>
+    </div>
+  </div>
+<!-- ══ 2021 ══ -->
+  <div class="year-block">
+    <div class="year-heading">
+      <span class="year-num">2021</span>
+      <div class="line"></div>
+    </div>
+
+    <div class="section-label">Theory & Practical — Major</div>
+    <div class="table-card">
+      <table class="marks-table">
+        <thead>
+          <tr class="top-header">
+            <th colspan="2">Theory (Major)</th>
+            <th colspan="2">Practical (Major)</th>
+          </tr>
+          <tr class="sub-header">
+            <th><a class="paper-link" href="https://drive.google.com/file/d/1-cuzIDIopWkGQjTwBk2HZBZhmBXRJqoN/view?usp=drive_link">CC1</a></th>
+            <th><a class="paper-link" href="https://drive.google.com/file/d/1Vn1XOts2G-wSHsyT7e3L9beNOaSXlqi8/view?usp=drive_link">CC2</a></th>
+            <th><a class="paper-link" href="#">CC-1</a></th>
+            <th><a class="paper-link" href="#">CC-2</a></th>          
+          </tr>
+        </thead>
+      </table>
+    </div>
+
+    <div class="section-label" style="margin-top:16px;">Theory & Practical — Minor + IDC</div>
+    <div class="table-card">
+      <table class="marks-table">
+        <thead>
+          <tr class="top-header">
+            <th colspan="2">Theory (Minor + IDC)</th>
+            <th colspan="2">Practical (Minor + IDC)</th>
+          </tr>
+          <tr class="sub-header">
+            <th colspan="2"><a class="paper-link" href="https://drive.google.com/file/d/1HDDvzo7jQf0C2UzDPV3ihPSZX-AeZljI/view?usp=drive_link">GE1</a></th>
+            <th COLSPAN="2"><a class="paper-link" href="#">GE-1</a></th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+   <!-- ══ 2020 ══ -->
+  <div class="year-block">
+    <div class="year-heading">
+      <span class="year-num">2020</span>
+      <div class="line"></div>
+    </div>
+
+    <div class="section-label">Theory & Practical — Major</div>
+    <div class="table-card">
+      <table class="marks-table">
+        <thead>
+          <tr class="top-header">
+            <th colspan="2">Theory (Major)</th>
+            <th colspan="2">Practical (Major)</th>
+          </tr>
+          </thead>
+          <tr class="sub-header">
+            <th ><a class="paper-link" href="https://drive.google.com/file/d/1G1PEClz8Nu0y2MfR8AVmNw4iiAbeWF0q/view?usp=drive_link">CC1(CBCS)</a></th>
+            <th><a class="paper-link" href="https://drive.google.com/file/d/1NOyXB_UpnFNK_QpnQz-U6-iHaW1rcklt/view?usp=drive_link">CC2(CBCS)</a></th>
+            <th><a class="paper-link" href="#">CC-1</a></th>
+            <th><a class="paper-link" href="#">CC-2</a></th>
+          </tr>
+      
+         
+        </thead>
+          
+        
+      </table>
+    </div>
+
+    <div class="section-label" style="margin-top:16px;">Theory & Practical — Minor + IDC</div>
+    <div class="table-card">
+      <table class="marks-table">
+        <thead>
+          <tr class="top-header">
+            <th colspan="2">Theory (Minor + IDC)</th>
+            <th colspan="2">Practical (Minor + IDC)</th>
+          </tr>
+          </thead>
+        <tr class="sub-header">
+            <th colspan="2"><a class="paper-link" href="#">MN-1</a></th>
+            <th COLSPAN="2"><a class="paper-link" href="#">MN-1</a></th>
+           
+          </tr>
+        
+    
+      </table>
+    </div>
+  </div>
+<!-- ══ 2019 ══ -->
+  <div class="year-block">
+    <div class="year-heading">
+      <span class="year-num">2019</span>
+      <div class="line"></div>
+    </div>
+
+    <div class="section-label">Theory & Practical — Major</div>
+    <div class="table-card">
+      <table class="marks-table">
+        <thead>
+          <tr class="top-header">
+            <th colspan="2">Theory (Major)</th>
+            <th colspan="2">Practical (Major)</th>
+          </tr>
+          <tr class="sub-header">
+            <th><a class="paper-link" href="https://drive.google.com/file/d/1iFDmhyKI6k6Y-io2X8XuxvIAoyeSf0tY/view?usp=drive_link">CC1</a></th>
+            <th><a class="paper-link" href="https://drive.google.com/file/d/1sKFNiM_cXxbQtEq0O3_EAbqN68gtKpoW/view?usp=drive_link">CC2</a></th>
+            <th><a class="paper-link" href="https://drive.google.com/file/d/1bdyIlA4O-dLJNdwU8Hn8GC2jJUeUlX27/view?usp=drive_link">CC1</a></th>
+            <th><a class="paper-link" href="#">CC-2</a></th>          
+          </tr>
+        </thead>
+      </table>
+    </div>
+
+    <div class="section-label" style="margin-top:16px;">Theory & Practical — Minor + IDC</div>
+    <div class="table-card">
+      <table class="marks-table">
+        <thead>
+          <tr class="top-header">
+            <th colspan="2">Theory (Minor + IDC)</th>
+            <th colspan="2">Practical (Minor + IDC)</th>
+          </tr>
+          <tr class="sub-header">
+             <th colspan="2"><a class="paper-link" href="#">MN-1</a></th>
+            <th COLSPAN="2"><a class="paper-link" href="#">MN-1</a></th>    
+          </tr>
+        </thead>
+    
+      </table>
+    </div>
+  </div>
+ <!-- ══ 2018 ══ -->
+  <div class="year-block">
+    <div class="year-heading">
+      <span class="year-num">2018</span>
+      <div class="line"></div>
+    </div>
+
+    <div class="section-label">Theory & Practical — Major</div>
+    <div class="table-card">
+      <table class="marks-table">
+        <thead>
+          <tr class="top-header">
+            <th colspan="2">Theory (Major)</th>
+            <th colspan="2">Practical (Major)</th>
+          </tr>
+          <tr class="sub-header">
+            <th colspan="2"><a class="paper-link" href="https://drive.google.com/file/d/110iUJi0Qsn5Wkt87UoPobKdKBc6-F9RH/view?usp=drive_link">PAPER-1</a></th>
+            <th><a class="paper-link" href="#">PAPER-1</a></th>
+           
+          </tr>
+        </thead>
+      </table>
+    </div>
+
+    <div class="section-label" style="margin-top:16px;">Theory & Practical — Minor + IDC</div>
+    <div class="table-card">
+      <table class="marks-table">
+        <thead>
+          <tr class="top-header">
+            <th colspan="2">Theory (Minor + IDC)</th>
+            <th colspan="2">Practical (Minor + IDC)</th>
+          </tr>
+          <tr class="sub-header">
+            <th class="dash">—</th>
+            <th class="dash">—</th>
+            <th class="dash">—</th>
+            <th class="dash">—</th>
+          </tr>
+        </thead>
+       
+      </table>
+    </div>
+  </div>
+<!-- ══ 2017 ══ -->
+  <div class="year-block">
+    <div class="year-heading">
+      <span class="year-num">2017</span>
+      <div class="line"></div>
+    </div>
+
+    <div class="section-label">Theory & Practical — Major</div>
+    <div class="table-card">
+      <table class="marks-table">
+        <thead>
+          <tr class="top-header">
+            <th colspan="2">Theory (Major)</th>
+            <th colspan="2">Practical (Major)</th>
+          </tr>
+           <tr class="sub-header">
+            <th><a class="paper-link" href="https://drive.google.com/file/d/1phig1xY1JNQ-lbLgnB_oGqbem5EbQFg6/view?usp=drive_link">PAPER-1</a></th>
+            <th><a class="paper-link" href="https://drive.google.com/file/d/1k4OWhnXYW1g-ibpNZDYvULJHhtIuku6b/view?usp=drive_link">PAPER-2</a></th>
+            <th><a class="paper-link" href="#">PAPER-1</a></th>
+            <th><a class="paper-link" href="#">PAPER-2</a></th>          
+          </tr>
+        </thead>
+      </table>
+    </div>
+
+    <div class="section-label" style="margin-top:16px;">Theory & Practical — Minor + IDC</div>
+    <div class="table-card">
+      <table class="marks-table">
+        <thead>
+          <tr class="top-header">
+            <th colspan="2">Theory (Minor + IDC)</th>
+            <th colspan="2">Practical (Minor + IDC)</th>
+          </tr>
+          <tr class="sub-header">
+            <th COLSPAN="2"><a class="paper-link" href="https://drive.google.com/file/d/1Ajvyv3_HYWzE1jGwC5rYSvyMxzirgnu7/view?usp=drive_link">GE-PAPER-1</a></th>
+            <th colspan="2"><a class="paper-link" href="#">GE-PAPER-1</a></th>      
+          </tr>
+        </thead>
+        
+      </table>
+    </div>
+  </div>
+  <!-- Back -->
+  <a href="index.html" class="back-link">← Back to Semesters</a>
+
+</div>
+</body>
+</html>
