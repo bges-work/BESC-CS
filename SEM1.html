@@ -276,6 +276,21 @@
       color: #000;
       border-color: var(--orange);
     }
+    /* Blank/Unavailable links */
+a.paper-link[href="#"],
+a.paper-link[href=""] {
+    color: #9a9a9a;
+    border-color: rgba(255,255,255,0.12);
+    cursor: not-allowed;
+}
+
+/* Hover effect for unavailable links */
+a.paper-link[href="#"]:hover,
+a.paper-link[href=""]:hover {
+    background: #d32f2f;
+    border-color: #d32f2f;
+    color: #fff;
+}
 
     a.paper-link::after {
       content: '↗';
@@ -340,376 +355,443 @@
     <h1>Semester <em>I</em><br>Question Papers</h1>
   </div>
 
-  <!-- ══ 2025 ══ -->
+  <!-- TABLE HERE -->
+ <!-- for none found link i'm marking them as * -->
+  <!-- yera 2025 -->
   <div class="year-block">
     <div class="year-heading">
       <span class="year-num">2025</span>
       <div class="line"></div>
     </div>
+ <div class="table-card">
+  <table class="marks-table">
 
-    <div class="section-label">Theory & Practical — Major</div>
-    <div class="table-card">
-      <table class="marks-table">
-        <thead>
-          <tr class="top-header">
-            <th colspan="2">Theory (Major)</th>
-            <th colspan="2">Practical (Major)</th>
-          </tr>
-          </thead>
-          <tr class="sub-header">
-            <th><a class="paper-link" href="https://drive.google.com/file/d/1R0WKKvZBNUVFQe_73S4RIdbP3ohoEHRP/view?usp=drive_link">DSCC1</a></th>
-            <th><a class="paper-link" href="#">SEC1</a></th>
-            <th><a class="paper-link" href="https://drive.google.com/file/d/1Wrc4WAAUd7HjmDMbX9_3LG9ZLAIs2llU/view?usp=drive_link">DSCC1</a></th>
-            <th><a class="paper-link" href="https://drive.google.com/file/d/1J6Sl5uHdBJxx9LVQZEFRpxqYVPuCAZvn/view?usp=drive_link">SEC1</a></th>
-          </tr>
-         
-        </thead>
-          
-        
-      </table>
+    <thead>
+      <tr class="top-header">
+   <th>paper</th>
+        <th>DSCC</th>
+        <th>SEC</th>
+        <th>IDC + Minor</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <th>Theory</th>
+        <td>
+          <a class="paper-link" href="https://drive.google.com/file/d/1R0WKKvZBNUVFQe_73S4RIdbP3ohoEHRP/view?usp=drive_link">Digital Electronics (DSCC-1)</a>
+        </td>
+        <td>
+          <a class="paper-link" href="#"> *Data Visualization (SEC-1)</a>
+        </td>
+        <td>
+          <a class="paper-link" href="https://drive.google.com/file/d/1StdMIZJchMoKmCnWYnfrYJuPbeDUEJ9h/view?usp=drive_link">Minor(Computer Fundamentals & digital logic</a>
+        </td>
+      </tr>
+      <tr>
+        <th>Practical</th>
+        <td>
+          <a class="paper-link" href="https://drive.google.com/file/d/1Wrc4WAAUd7HjmDMbX9_3LG9ZLAIs2llU/view?usp=drive_link">Digital Electronics Practical</a>
+        </td>
+        <td>
+          <a class="paper-link" href="https://drive.google.com/file/d/1J6Sl5uHdBJxx9LVQZEFRpxqYVPuCAZvn/view?usp=drive_link">Data Visualization Practical (SEC-1)</a>
+        </td>
+        <td>
+          <a class="paper-link" href="#">*Minor / IDC Practical</a>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+
+<!-- for year 2024 -->
+<div class="year-block">
+    <div class="year-heading">
+      <span class="year-num">2024</span>
+      <div class="line"></div>
     </div>
+<div class="table-card">
+  <table class="marks-table">
 
-    <div class="section-label" style="margin-top:16px;">Theory & Practical — Minor + IDC</div>
-    <div class="table-card">
-      <table class="marks-table">
-        <thead>
-          <tr class="top-header">
-            <th colspan="2">Theory (Minor + IDC)</th>
-            <th colspan="2">Practical (Minor + IDC)</th>
-          </tr>
-          </thead>
-        <tr class="sub-header">
-            <th colspan="2"><a class="paper-link" href="https://drive.google.com/file/d/1StdMIZJchMoKmCnWYnfrYJuPbeDUEJ9h/view?usp=drive_link">MN-1</a></th>
-            <th colspan="2"><a class="paper-link" href="#">MN-1</a></th>
-                       
-          </tr>
-        
-      </table>
-    </div>
-  </div>
+    <thead>
+      <tr class="top-header">
+   <th>paper</th>
+        <th>DSCC</th>
+        <th>SEC</th>
+        <th>IDC + Minor</th>
+      </tr>
+    </thead>
+    <tbody>
 
- 
-  <!-- ══ 2023 ══ -->
-  <div class="year-block">
+      <tr>
+        <th>Theory</th>
+        <td>
+          <a class="paper-link" href="https://drive.google.com/file/d/1zRCwamUQAXpx9yLh25Uq2fuqUGV-xHqM/view?usp=drive_link">Digital Electronics (DSCC-1)</a>
+        </td>
+        <td>
+          <a class="paper-link" href="https://drive.google.com/file/d/1-LnEvkIZS5ZpWsznY1XPsRynz4AU4UuI/view?usp=drive_link"> Data Visualization (SEC-1)</a>
+        </td>
+        <td>
+          <a class="paper-link" href="#">*Minor(Computer Fundamentals & digital logic)</a>
+        </td>
+      </tr>
+      <tr>
+        <th>Practical</th>
+        <td>
+          <a class="paper-link" href="https://drive.google.com/file/d/1LJ0AA24IwD_-x8ymOELeWvRjac2KeZl0/view?usp=drive_link">Digital Electronics Practical</a>
+        </td>
+        <td>
+          <a class="paper-link" href="https://drive.google.com/file/d/1fWr098q9pSEo-PmbAnqVWCauhVlS_ANY/view?usp=drive_link">Data Visualization Practical (SEC-1)</a>
+        </td>
+        <td>
+          <a class="paper-link" href="#">*Minor / IDC Practical</a>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+
+<!-- year 2023-->
+<div class="year-block">
     <div class="year-heading">
       <span class="year-num">2023</span>
       <div class="line"></div>
     </div>
+<div class="table-card">
+  <table class="marks-table">
 
-    <div class="section-label">Theory & Practical — Major</div>
-    <div class="table-card">
-      <table class="marks-table">
-        <thead>
-          <tr class="top-header">
-            <th colspan="2">Theory (Major)</th>
-            <th colspan="2">Practical (Major)</th>
-          </tr>
-          <tr class="sub-header">
-            <th><a class="paper-link" href="https://drive.google.com/file/d/16zD8h10WgOtJP5hbLWLZDCmjzZfNB3X-/view?usp=drive_link">DSCC1</a></th>
-            <th><a class="paper-link" href="https://drive.google.com/file/d/16skTRUPj7AsVHChe6yJhlK1YBXlynisf/view?usp=drive_link">DSCC2</a></th>
-            <th><a class="paper-link" href="https://drive.google.com/file/d/1dlUIFfFDSDvUQPy6GQyso9Wse46km2w3/view?usp=drive_link">DSCC1</a></th>
-            <th><a class="paper-link" href="https://drive.google.com/file/d/1ivpF8ZKNPi5xFhLoR70_1sJtfW1wQIyM/view?usp=drive_link">DSCC2</a></th>
-          
-          </tr>
-           <tr class="sub-header">
-            <th><a class="paper-link" href="https://drive.google.com/file/d/1fN5utfH4ENYS5ScQN8j-fy82pIvae4Ky/view?usp=drive_link">MDC-CC1</a></th>
-            <th><a class="paper-link" href="https://drive.google.com/file/d/1Ja49feD1LBdga8T8G9xCpiURx0AaQeKv/view?usp=drive_link">NEP-CC1</a></th>
-            <th><a class="paper-link" href="#">MDC-CC1</a></th>
-            <th><a class="paper-link" href="#">NEP-CC1</a></th>
-          </tr>
-          <tr class="sub-header">
-            <th COLSPAN="2"><a class="paper-link" href="https://drive.google.com/file/d/1KMRmzQ5tRgkI61K-OIralvsqvbzQLbzT/view?usp=drive_link">SEC1</a></th>
-            <th COLSPAN="2"><a class="paper-link" href="https://drive.google.com/file/d/1XZxm2uh97_Xc5bshIw08tbFeq3570v_T/view?usp=drive_link">SEC1</a></th>
-          </tr>
-        </thead>
-      </table>
-    </div>
+    <thead>
+      <tr class="top-header">
+   <th>paper</th>
+        <th>DSCC</th>
+        <th>SEC</th>
+        <th>IDC + Minor</th>
+      </tr>
+    </thead>
+    <tbody>
 
-    <div class="section-label" style="margin-top:16px;">Theory & Practical — Minor + IDC</div>
-    <div class="table-card">
-      <table class="marks-table">
-        <thead>
-          <tr class="top-header">
-            <th colspan="2">Theory (Minor + IDC)</th>
-            <th colspan="2">Practical (Minor + IDC)</th>
-          </tr>
-          <tr class="sub-header">
-            <th><a class="paper-link" href="https://drive.google.com/file/d/1YM5jQXI2TmWiW9B_sH00WNcqszTVktHw/view?usp=drive_link">MN1</a></th>
-            <th><a class="paper-link" href="https://drive.google.com/file/d/16kYshdMVh5BM7rN-Rj3fuZJsWv4He0ZO/view?usp=drive_link">GE1</a></th>
-            <th><a class="paper-link" href="#">MN-1</a></th>
-            <th><a class="paper-link" href="#">GE1</a></th>
-          </tr>
-        </thead>
-        
-      </table>
-    </div>
-  </div>
-  <!-- ══ 2022 ══ -->
-  <div class="year-block">
+      <tr>
+        <th>Theory</th>
+        <td>
+          <a class="paper-link" href="https://drive.google.com/file/d/178c1DIIKB3hN9WlvdEw0wxeTWu9covX7/view?usp=drive_link">Digital Electronics (DSCC-1)</a>
+        </td>
+        <td>
+          <a class="paper-link" href="https://drive.google.com/file/d/1KMRmzQ5tRgkI61K-OIralvsqvbzQLbzT/view?usp=drive_link"> Data Visualization (SEC-1)</a>
+        </td>
+        <td>
+          <a class="paper-link" href="https://drive.google.com/file/d/1vcpG8DPL1POoBcNO8V_w21Rw0_GZTQYh/view?usp=drive_link">MN-1 + GE-1</a>
+        </td>
+      </tr>
+      <tr>
+        <th>Practical</th>
+        <td>
+          <a class="paper-link" href="https://drive.google.com/file/d/1dlUIFfFDSDvUQPy6GQyso9Wse46km2w3/view?usp=drive_link">Digital Electronics Practical</a>
+        </td>
+        <td>
+          <a class="paper-link" href="">Data Visualization Practical (SEC-1)</a>
+        </td>
+        <td>
+          <a class="paper-link" href="#">Minor / IDC Practical</a>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+
+<!-- year 2022-->
+<div class="year-block">
     <div class="year-heading">
       <span class="year-num">2022</span>
       <div class="line"></div>
     </div>
+<div class="table-card">
+  <table class="marks-table">
 
-    <div class="section-label">Theory & Practical — Major</div>
-    <div class="table-card">
-      <table class="marks-table">
-        <thead>
-          <tr class="top-header">
-            <th colspan="2">Theory (Major)</th>
-            <th colspan="2">Practical (Major)</th>
-          </tr>
-          </thead>
-          <tr class="sub-header">
-            <th><a class="paper-link" href="https://drive.google.com/file/d/1JmASZj5nVM5A6RBQJ02V38em8FExVSam/view?usp=drive_link">CC1(CBCS)</a></th>
-            <th><a class="paper-link" href="https://drive.google.com/file/d/1KlMEk4K0qs0IUzJBymesasKMQ72WEQ3N/view?usp=drive_link">CC2(CBCS)</a></th>
-            <th><a class="paper-link" href="#">CC-1</a></th>
-            <th><a class="paper-link" href="#">CC-2</a></th>
-          </tr>
-         
-        </thead>
-          
-        
-      </table>
-    </div>
+    <thead>
+      <tr class="top-header">
+   <th>paper</th>
+        <th>DSCC</th>
+        <th>SEC</th>
+        <th>IDC + Minor</th>
+      </tr>
+    </thead>
+    <tbody>
 
-    <div class="section-label" style="margin-top:16px;">Theory & Practical — Minor + IDC</div>
-    <div class="table-card">
-      <table class="marks-table">
-        <thead>
-          <tr class="top-header">
-            <th colspan="2">Theory (Minor + IDC)</th>
-            <th colspan="2">Practical (Minor + IDC)</th>
-          </tr>
-          </thead>
-        <tr class="sub-header">
-            <th colspan="2"><a class="paper-link" href="https://drive.google.com/file/d/1D0_61c3aYGFy7ANcs-4ByVEW-gC3ADWj/view?usp=drive_link">GE1(CMSG)</a></th>
-            <th COLSPAN="2"><a class="paper-link" href="">GE-1</a></th>
-          </tr>
-        
-      </table>
-    </div>
-  </div>
-<!-- ══ 2021 ══ -->
-  <div class="year-block">
+      <tr>
+        <th>Theory</th>
+        <td>
+          <a class="paper-link" href="https://drive.google.com/file/d/1JmASZj5nVM5A6RBQJ02V38em8FExVSam/view?usp=drive_link">Digital Electronics (DSCC-1)</a>
+        </td>
+        <td>
+          <a class="paper-link" href="#"> Data Visualization (SEC-1)</a>
+        </td>
+        <td>
+          <a class="paper-link" href="https://drive.google.com/file/d/1D0_61c3aYGFy7ANcs-4ByVEW-gC3ADWj/view?usp=drive_link">GE-1</a>
+        </td>
+      </tr>
+      <tr>
+        <th>Practical</th>
+        <td>
+          <a class="paper-link" href="#">Digital Electronics Practical</a>
+        </td>
+        <td>
+          <a class="paper-link" href="">Data Visualization Practical (SEC-1)</a>
+        </td>
+        <td>
+          <a class="paper-link" href="#">Minor / IDC Practical</a>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+
+<!-- year 2021-->
+<div class="year-block">
     <div class="year-heading">
       <span class="year-num">2021</span>
       <div class="line"></div>
     </div>
+<div class="table-card">
+  <table class="marks-table">
 
-    <div class="section-label">Theory & Practical — Major</div>
-    <div class="table-card">
-      <table class="marks-table">
-        <thead>
-          <tr class="top-header">
-            <th colspan="2">Theory (Major)</th>
-            <th colspan="2">Practical (Major)</th>
-          </tr>
-          <tr class="sub-header">
-            <th><a class="paper-link" href="https://drive.google.com/file/d/1-cuzIDIopWkGQjTwBk2HZBZhmBXRJqoN/view?usp=drive_link">CC1</a></th>
-            <th><a class="paper-link" href="https://drive.google.com/file/d/1Vn1XOts2G-wSHsyT7e3L9beNOaSXlqi8/view?usp=drive_link">CC2</a></th>
-            <th><a class="paper-link" href="#">CC-1</a></th>
-            <th><a class="paper-link" href="#">CC-2</a></th>          
-          </tr>
-        </thead>
-      </table>
-    </div>
+    <thead>
+      <tr class="top-header">
+   <th>paper</th>
+        <th>DSCC</th>
+        <th>SEC</th>
+        <th>IDC + Minor</th>
+      </tr>
+    </thead>
+    <tbody>
 
-    <div class="section-label" style="margin-top:16px;">Theory & Practical — Minor + IDC</div>
-    <div class="table-card">
-      <table class="marks-table">
-        <thead>
-          <tr class="top-header">
-            <th colspan="2">Theory (Minor + IDC)</th>
-            <th colspan="2">Practical (Minor + IDC)</th>
-          </tr>
-          <tr class="sub-header">
-            <th colspan="2"><a class="paper-link" href="https://drive.google.com/file/d/1HDDvzo7jQf0C2UzDPV3ihPSZX-AeZljI/view?usp=drive_link">GE1</a></th>
-            <th COLSPAN="2"><a class="paper-link" href="#">GE-1</a></th>
-          </tr>
-        </thead>
-      </table>
-    </div>
-  </div>
-   <!-- ══ 2020 ══ -->
-  <div class="year-block">
+      <tr>
+        <th>Theory</th>
+        <td>
+          <a class="paper-link" href="https://drive.google.com/file/d/1-cuzIDIopWkGQjTwBk2HZBZhmBXRJqoN/view?usp=drive_link">Digital Electronics (DSCC-1)</a>
+        </td>
+        <td>
+          <a class="paper-link" href="#"> Data Visualization (SEC-1)</a>
+        </td>
+        <td>
+          <a class="paper-link" href="https://drive.google.com/file/d/1HDDvzo7jQf0C2UzDPV3ihPSZX-AeZljI/view?usp=drive_link">GE-1</a>
+        </td>
+      </tr>
+      <tr>
+        <th>Practical</th>
+        <td>
+          <a class="paper-link" href="#">Digital Electronics Practical</a>
+        </td>
+        <td>
+          <a class="paper-link" href="">Data Visualization Practical (SEC-1)</a>
+        </td>
+        <td>
+          <a class="paper-link" href="#">Minor / IDC Practical</a>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+
+<!-- year 2020-->
+<div class="year-block">
     <div class="year-heading">
       <span class="year-num">2020</span>
       <div class="line"></div>
     </div>
+<div class="table-card">
+  <table class="marks-table">
 
-    <div class="section-label">Theory & Practical — Major</div>
-    <div class="table-card">
-      <table class="marks-table">
-        <thead>
-          <tr class="top-header">
-            <th colspan="2">Theory (Major)</th>
-            <th colspan="2">Practical (Major)</th>
-          </tr>
-          </thead>
-          <tr class="sub-header">
-            <th ><a class="paper-link" href="https://drive.google.com/file/d/1G1PEClz8Nu0y2MfR8AVmNw4iiAbeWF0q/view?usp=drive_link">CC1(CBCS)</a></th>
-            <th><a class="paper-link" href="https://drive.google.com/file/d/1NOyXB_UpnFNK_QpnQz-U6-iHaW1rcklt/view?usp=drive_link">CC2(CBCS)</a></th>
-            <th><a class="paper-link" href="#">CC-1</a></th>
-            <th><a class="paper-link" href="#">CC-2</a></th>
-          </tr>
-      
-         
-        </thead>
-          
-        
-      </table>
-    </div>
+    <thead>
+      <tr class="top-header">
+   <th>paper</th>
+        <th>DSCC</th>
+        <th>SEC</th>
+        <th>IDC + Minor</th>
+      </tr>
+    </thead>
+    <tbody>
 
-    <div class="section-label" style="margin-top:16px;">Theory & Practical — Minor + IDC</div>
-    <div class="table-card">
-      <table class="marks-table">
-        <thead>
-          <tr class="top-header">
-            <th colspan="2">Theory (Minor + IDC)</th>
-            <th colspan="2">Practical (Minor + IDC)</th>
-          </tr>
-          </thead>
-        <tr class="sub-header">
-            <th colspan="2"><a class="paper-link" href="#">MN-1</a></th>
-            <th COLSPAN="2"><a class="paper-link" href="#">MN-1</a></th>
-           
-          </tr>
-        
-    
-      </table>
-    </div>
-  </div>
-<!-- ══ 2019 ══ -->
-  <div class="year-block">
-    <div class="year-heading">
-      <span class="year-num">2019</span>
-      <div class="line"></div>
-    </div>
+      <tr>
+        <th>Theory</th>
+        <td>
+          <a class="paper-link" href="https://drive.google.com/file/d/1G1PEClz8Nu0y2MfR8AVmNw4iiAbeWF0q/view?usp=drive_link">Digital Electronics (DSCC-1)</a>
+        </td>
+        <td>
+          <a class="paper-link" href="#"> Data Visualization (SEC-1)</a>
+        </td>
+        <td>
+          <a class="paper-link" href="#">GE-1</a>
+        </td>
+      </tr>
+      <tr>
+        <th>Practical</th>
+        <td>
+          <a class="paper-link" href="#">Digital Electronics Practical</a>
+        </td>
+        <td>
+          <a class="paper-link" href="">Data Visualization Practical (SEC-1)</a>
+        </td>
+        <td>
+          <a class="paper-link" href="#">Minor / IDC Practical</a>
+        </td>
+      </tr>
+    </tbody>
 
-    <div class="section-label">Theory & Practical — Major</div>
-    <div class="table-card">
-      <table class="marks-table">
-        <thead>
-          <tr class="top-header">
-            <th colspan="2">Theory (Major)</th>
-            <th colspan="2">Practical (Major)</th>
-          </tr>
-          <tr class="sub-header">
-            <th><a class="paper-link" href="https://drive.google.com/file/d/1iFDmhyKI6k6Y-io2X8XuxvIAoyeSf0tY/view?usp=drive_link">CC1</a></th>
-            <th><a class="paper-link" href="https://drive.google.com/file/d/1sKFNiM_cXxbQtEq0O3_EAbqN68gtKpoW/view?usp=drive_link">CC2</a></th>
-            <th><a class="paper-link" href="https://drive.google.com/file/d/1bdyIlA4O-dLJNdwU8Hn8GC2jJUeUlX27/view?usp=drive_link">CC1</a></th>
-            <th><a class="paper-link" href="#">CC-2</a></th>          
-          </tr>
-        </thead>
-      </table>
-    </div>
-
-    <div class="section-label" style="margin-top:16px;">Theory & Practical — Minor + IDC</div>
-    <div class="table-card">
-      <table class="marks-table">
-        <thead>
-          <tr class="top-header">
-            <th colspan="2">Theory (Minor + IDC)</th>
-            <th colspan="2">Practical (Minor + IDC)</th>
-          </tr>
-          <tr class="sub-header">
-             <th colspan="2"><a class="paper-link" href="#">MN-1</a></th>
-            <th COLSPAN="2"><a class="paper-link" href="#">MN-1</a></th>    
-          </tr>
-        </thead>
-    
-      </table>
-    </div>
-  </div>
- <!-- ══ 2018 ══ -->
-  <div class="year-block">
-    <div class="year-heading">
-      <span class="year-num">2018</span>
-      <div class="line"></div>
-    </div>
-
-    <div class="section-label">Theory & Practical — Major</div>
-    <div class="table-card">
-      <table class="marks-table">
-        <thead>
-          <tr class="top-header">
-            <th colspan="2">Theory (Major)</th>
-            <th colspan="2">Practical (Major)</th>
-          </tr>
-          <tr class="sub-header">
-            <th colspan="2"><a class="paper-link" href="https://drive.google.com/file/d/110iUJi0Qsn5Wkt87UoPobKdKBc6-F9RH/view?usp=drive_link">PAPER-1</a></th>
-            <th><a class="paper-link" href="#">PAPER-1</a></th>
-           
-          </tr>
-        </thead>
-      </table>
-    </div>
-
-    <div class="section-label" style="margin-top:16px;">Theory & Practical — Minor + IDC</div>
-    <div class="table-card">
-      <table class="marks-table">
-        <thead>
-          <tr class="top-header">
-            <th colspan="2">Theory (Minor + IDC)</th>
-            <th colspan="2">Practical (Minor + IDC)</th>
-          </tr>
-          <tr class="sub-header">
-            <th class="dash">—</th>
-            <th class="dash">—</th>
-            <th class="dash">—</th>
-            <th class="dash">—</th>
-          </tr>
-        </thead>
-       
-      </table>
-    </div>
-  </div>
-<!-- ══ 2017 ══ -->
-  <div class="year-block">
-    <div class="year-heading">
-      <span class="year-num">2017</span>
-      <div class="line"></div>
-    </div>
-
-    <div class="section-label">Theory & Practical — Major</div>
-    <div class="table-card">
-      <table class="marks-table">
-        <thead>
-          <tr class="top-header">
-            <th colspan="2">Theory (Major)</th>
-            <th colspan="2">Practical (Major)</th>
-          </tr>
-           <tr class="sub-header">
-            <th><a class="paper-link" href="https://drive.google.com/file/d/1phig1xY1JNQ-lbLgnB_oGqbem5EbQFg6/view?usp=drive_link">PAPER-1</a></th>
-            <th><a class="paper-link" href="https://drive.google.com/file/d/1k4OWhnXYW1g-ibpNZDYvULJHhtIuku6b/view?usp=drive_link">PAPER-2</a></th>
-            <th><a class="paper-link" href="#">PAPER-1</a></th>
-            <th><a class="paper-link" href="#">PAPER-2</a></th>          
-          </tr>
-        </thead>
-      </table>
-    </div>
-
-    <div class="section-label" style="margin-top:16px;">Theory & Practical — Minor + IDC</div>
-    <div class="table-card">
-      <table class="marks-table">
-        <thead>
-          <tr class="top-header">
-            <th colspan="2">Theory (Minor + IDC)</th>
-            <th colspan="2">Practical (Minor + IDC)</th>
-          </tr>
-          <tr class="sub-header">
-            <th COLSPAN="2"><a class="paper-link" href="https://drive.google.com/file/d/1Ajvyv3_HYWzE1jGwC5rYSvyMxzirgnu7/view?usp=drive_link">GE-PAPER-1</a></th>
-            <th colspan="2"><a class="paper-link" href="#">GE-PAPER-1</a></th>      
-          </tr>
-        </thead>
-        
-      </table>
-    </div>
-  </div>
-  <!-- Back -->
-  <a href="index.html" class="back-link">← Back to Semesters</a>
-
+  </table>
 </div>
+
+<!-- year 2019-->
+<div class="year-block">
+  <div class="year-heading">
+    <span class="year-num">2019</span>
+    <div class="line"></div>
+  </div>
+<div class="table-card">
+<table class="marks-table">
+
+  <thead>
+    <tr class="top-header">
+ <th>paper</th>
+      <th>DSCC</th>
+      <th>SEC</th>
+      <th>IDC + Minor</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <th>Theory</th>
+      <td>
+        <a class="paper-link" href="https://drive.google.com/file/d/1iFDmhyKI6k6Y-io2X8XuxvIAoyeSf0tY/view?usp=drive_link">Digital Electronics (DSCC-1)</a>
+      </td>
+      <td>
+        <a class="paper-link" href="#"> Data Visualization (SEC-1)</a>
+      </td>
+      <td>
+        <a class="paper-link" href="#">GE-1</a>
+      </td>
+    </tr>
+    <tr>
+      <th>Practical</th>
+      <td>
+        <a class="paper-link" href="https://drive.google.com/file/d/1bdyIlA4O-dLJNdwU8Hn8GC2jJUeUlX27/view?usp=drive_link">Digital Electronics Practical</a>
+      </td>
+      <td>
+        <a class="paper-link" href="">Data Visualization Practical (SEC-1)</a>
+      </td>
+      <td>
+        <a class="paper-link" href="#">Minor / IDC Practical</a>
+      </td>
+    </tr>
+  </tbody>
+
+</table>
+</div>
+
+<!-- year 2018-->
+<div class="year-block">
+  <div class="year-heading">
+    <span class="year-num">2018</span>
+    <div class="line"></div>
+  </div>
+ <div class="table-card">
+ <table class="marks-table">
+
+  <thead>
+    <tr class="top-header">
+ <th>paper</th>
+      <th>DSCC</th>
+      <th>SEC</th>
+      <th>IDC + Minor</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <th>Theory</th>
+      <td>
+        <a class="paper-link" href="https://drive.google.com/file/d/110iUJi0Qsn5Wkt87UoPobKdKBc6-F9RH/view?usp=drive_link">Digital Electronics (PAPER-1)</a>
+      </td>
+      <td>
+        <a class="paper-link" href="#"> Data Visualization (SEC-1)</a>
+      </td>
+      <td>
+        <a class="paper-link" href="#">GE-1</a>
+      </td>
+    </tr>
+    <tr>
+      <th>Practical</th>
+      <td>
+        <a class="paper-link" href="#">Digital Electronics Practical</a>
+      </td>
+      <td>
+        <a class="paper-link" href="">Data Visualization Practical (SEC-1)</a>
+      </td>
+      <td>
+        <a class="paper-link" href="#">Minor / IDC Practical</a>
+      </td>
+    </tr>
+  </tbody>
+
+</table>
+ </div>
+</div>
+
+<!-- year 2017-->
+<div class="year-block">
+  <div class="year-heading">
+    <span class="year-num">2017</span>
+    <div class="line"></div>
+  </div>
+ <div class="table-card">
+ <table class="marks-table">
+
+  <thead>
+    <tr class="top-header">
+ <th>paper</th>
+      <th>DSCC</th>
+      <th>SEC</th>
+      <th>IDC + Minor</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <th>Theory</th>
+      <td>
+        <a class="paper-link" href="https://drive.google.com/file/d/1phig1xY1JNQ-lbLgnB_oGqbem5EbQFg6/view?usp=drive_link">Digital Electronics (PAPER-1)</a>
+      </td>
+      <td>
+        <a class="paper-link" href="#"> Data Visualization (SEC-1)</a>
+      </td>
+      <td>
+        <a class="paper-link" href="https://drive.google.com/file/d/1Ajvyv3_HYWzE1jGwC5rYSvyMxzirgnu7/view?usp=drive_link">GE-PAPER-1</a>
+      </td>
+    </tr>
+    <tr>
+      <th>Practical</th>
+      <td>
+        <a class="paper-link" href="#">Digital Electronics Practical</a>
+      </td>
+      <td>
+        <a class="paper-link" href="">Data Visualization Practical (SEC-1)</a>
+      </td>
+      <td>
+        <a class="paper-link" href="#">Minor / IDC Practical</a>
+      </td>
+    </tr>
+  </tbody>
+
+ </table>
+ </div>
+ </div>
+ 
+</div>
+
 </body>
 </html>
